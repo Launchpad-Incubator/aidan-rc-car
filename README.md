@@ -18,3 +18,7 @@ It also includes code for an ESP32 Dev Module to run a controller with a joystic
 7. Type `cd .\Downloads\`
 8. Type `python control_rc_car.py`
 9. Control your RC Car!
+
+# Contributors 👥
+
+Aidan McMillan (@arduinohatesme, @launchpadinc-ai)
