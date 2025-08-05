@@ -1,4 +1,4 @@
-# Aidan's RC Car 🏎️
+# Aidan's RC Car
 
 This is code based on Launchpad-Incubator/rc-car that uses a Respberry Pi Pico W as an Access Point to create its own Wi-Fi network.
 It also includes code for an ESP32 Dev Module to run a controller with a joystick to connect to the car. This is **not** on its final version.
@@ -17,7 +17,7 @@ It also includes code for an ESP32 Dev Module to run a controller with a joystic
 6. If you do, open Terminal.
 7. Type `cd .\Downloads\`
 8. Type `python control_rc_car.py`
-9. Control your RC Car!
+9. Control your RC Car using WASD!
 
 # Contributors 👥
 
