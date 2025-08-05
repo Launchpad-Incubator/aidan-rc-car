@@ -1,3 +1,13 @@
+/*
+ESP32 RC Car Controller Code
+
+  - Uses an ESP32 to send a GET request over Wi-Fi
+  - Controls an RC Car with inputs from a joystick
+
+Author: Aidan McMillan
+Date: 08/05/2025
+*/
+
 #include <WiFi.h>
 #include <Arduino.h>
 
