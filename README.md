@@ -19,6 +19,10 @@ It also includes code for an ESP32 Dev Module to run a controller with a joystic
 8. Type `python control_rc_car.py`
 9. Control your RC Car using WASD!
 
+# Contributing
+
+All forms of contribution are welcome! Please clearly explain your changes in the pull request.
+
 # Contributors 👥
 
 Aidan McMillan (@arduinohatesme, @launchpadinc-ai)
