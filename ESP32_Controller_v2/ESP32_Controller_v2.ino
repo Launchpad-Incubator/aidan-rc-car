@@ -14,14 +14,14 @@ int stick_input[2] = {0, 0};
 int past_stick[2] = {-1, -1};
 String stick_cmd[2] = {"null", "null"};
 
-const int X_PIN = 3;
-const int Y_PIN = 4;
-const int LED = 2;
+const int X_PIN = 18;
+const int Y_PIN = 19;
+const int LED = 16;
 const int INT_CONTROL = 0;
 const int MID_LOW = 2000;
 const int MID_HIGH = 2100;
 
-void getKeyInputs() {
+void getInputs() {
   input_changed = 0;
   stick_input[0] = analogRead(X_PIN);
   stick_input[1] = analogRead(Y_PIN);
@@ -57,7 +57,7 @@ void getKeyInputs() {
     Serial.print("\nSteering set to ");
     Serial.print(stick_cmd[0]);
     Serial.print("\nDrive set to ");
-    Serial.print(stick_cmd[1]);
+    Serial.println(stick_cmd[1]);
     past_stick[0] = stick_input[0];
     past_stick[1] = stick_input[1];
   }
@@ -68,12 +68,13 @@ void sendInputs() {
 
   if (cmd != past_cmd) {
   
-  String request = "GET /api?cmd=";
+  String request = "GET /api?";
   request += cmd;
   request += " HTTP/1.1\r\nHost: ";
   request += pico_ip;
-  request += "\r\nConnection: close\r\n\r\n";
   Client.print(request);
+  Serial.print("Sent Command: ");
+  Serial.println(request);
   past_cmd = cmd;
 
   }
@@ -82,18 +83,20 @@ void sendInputs() {
 void setup() {
   Serial.begin(9600);
   WiFi.begin(ssid, password);
-  Serial.print("\nConnecting to wifi on network ");
+  pinMode(X_PIN, INPUT);
+  pinMode(Y_PIN, INPUT);
+  Serial.print("\nConnecting to wifi on ");
   Serial.print(ssid);
-  Serial.print(" and password ");
-  Serial.print(password);
   while(WiFi.status() != WL_CONNECTED) {
     delay(200);
     Serial.print(".");
     digitalWrite(LED, !digitalRead(LED));
     if (WiFi.status() == WL_CONNECT_FAILED) {
       Serial.print("\nConnection Failed!");
+      throw;
     } else if (WiFi.status() == WL_NO_SSID_AVAIL) {
       Serial.print("\nNo SSID found!");
+      throw;
     }
   }
   Serial.print("\nConnected to wifi. \nIP address: ");
@@ -101,6 +104,6 @@ void setup() {
 }
 
 void loop() {
-  getKeyInputs();
+  getInputs();
   sendInputs();
 }
